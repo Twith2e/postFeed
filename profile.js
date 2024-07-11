@@ -742,7 +742,7 @@ tweetFileInput.addEventListener("change", (e) => {
   }
 
   myReader.addEventListener("load", (e) => {
-    tweetImage.innerHTML += `<img alt="imagefortweet" class="w-75 h-100" src="${e.target.result}" />`;
+    tweetImage.innerHTML = `<img alt="imagefortweet" class="w-75 h-100" src="${e.target.result}" />`;
     showBtn = true;
   });
 });
