@@ -9,6 +9,7 @@ const tweetFileInput = document.getElementById("tweetInputFile");
 const logoutPop = document.getElementById("logout");
 let isCollapse = true;
 let showBtn = false;
+let showLogout = true;
 
 if (showBtn === false) {
   removeTweetImage.style.display = "none";
@@ -748,8 +749,18 @@ tweetFileInput.addEventListener("change", (e) => {
 });
 
 logoutPop.addEventListener("click", () => {
-  logOutPopUp.style.display = "block";
+  if (showLogout === true) {
+    logOutPopUp.style.display = "block";
+    showLogout = false;
+  } else {
+    logOutPopUp.style.display = "none";
+    showLogout = true;
+  }
 });
+
+// document.body.addEventListener("click", () => {
+//   logOutPopUp.style.display = "none";
+// });
 
 logoutBtn.addEventListener("click", () => {
   localStorage.removeItem("signedInUserIndex");
