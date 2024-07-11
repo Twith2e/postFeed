@@ -10,7 +10,6 @@ const logoutPop = document.getElementById("logout");
 let isCollapse = true;
 let showBtn = false;
 let showLogout = true;
-
 if (showBtn === false) {
   removeTweetImage.style.display = "none";
 } else {
@@ -38,7 +37,6 @@ if (!signedInUserIndex) {
     myReader.addEventListener("load", (e) => {
       pfps.forEach((pfp) => {
         pfp.src = e.target.result;
-        // pfp.classList.add("profile-pfp", "big-pfp");
       });
       usersProfile[signedInUserIndex].image = e.target.result;
       console.log(usersProfile);
