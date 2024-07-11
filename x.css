@@ -657,6 +657,33 @@ nav {
   width: 90% !important;
 }
 
+.logout-popup {
+  bottom: 60px;
+  box-shadow: 0.3px 0.31px 3px 0.1px white;
+  display: none;
+  left: 30px;
+  padding-block: 20px;
+  position: fixed;
+  width: 10%;
+  z-index: 30;
+}
+
+.logout-popup button {
+  background-color: red;
+  border: 1px solid red;
+  color: white;
+}
+
+.logout-popup button:hover {
+  background-color: black;
+  border-color: red;
+  color: rgb(197, 52, 52);
+}
+
+#removeTweetImage {
+  display: none;
+}
+
 /* .carrier {
   position: relative !important;
 } */

@@ -29,6 +29,12 @@
           class="col-3 col-lg-3 col-md-2 m-0 d-md-block d-none align-items-center bg-black d-lg-flex border-end border-top border-bottom border-secondary flex-column gap-1 ps-5 ps-lg-0 pt-2 left-page"
         >
           <div
+            class="bg-black col-2 text-light text-center logout-popup"
+            id="logOutPopUp"
+          >
+            <button class="btn rounded-pill" id="logoutBtn">Log out</button>
+          </div>
+          <div
             class="h-100 d-flex position-fixed flex-column pb-md-4 justify-content-between"
           >
             <div class="d-flex flex-column gap-lg-2 gap-3">
@@ -233,29 +239,27 @@
               </div>
             </div>
 
-            <div>
+            <div id="logout">
               <div class="d-flex align-items-center gap-2 mt-5 mt-lg-0">
                 <img
                   class="img-fluid pfp"
                   id="pfp"
-                  src="images/pfp.jpg"
+                  src="images/default pfp.png"
                   alt="profile picture"
                 />
                 <div
                   class="d-flex align-items-center d-md-none md-align-items-right gap-5 more-profile-text d-lg-flex"
                 >
                   <div class="d-flex flex-column">
-                    <span class="profile-text" id="name"
-                      >Tee.py &#128104;&#127999;&#8205;&#128187;</span
-                    >
-                    <span class="profile-text2" id="handle">@Twith2e</span>
+                    <span class="profile-text" id="name"></span>
+                    <span class="profile-text2" id="handle"></span>
                   </div>
                   <div>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      height="24px"
+                      height="24"
                       viewBox="0 -960 960 960"
-                      width="24px"
+                      width="24"
                       fill="#e8eaed"
                     >
                       <path
@@ -1313,6 +1317,20 @@
                       <img class="pfp" id="pfp" src="images/pfp.jpg" alt="" />
                     </div>
                     <div class="d-flex flex-column gap-4">
+                      <div id="removeTweetImage" style="position: absolute">
+                        <svg
+                          aria-label="Close"
+                          viewBox="0 0 24 24"
+                          fill="red"
+                          height="20"
+                        >
+                          <g>
+                            <path
+                              d="M10.59 12L4.54 5.96l1.42-1.42L12 10.59l6.04-6.05 1.42 1.42L13.41 12l6.05 6.04-1.42 1.42L12 13.41l-6.04 6.05-1.42-1.42L10.59 12z"
+                            ></path>
+                          </g>
+                        </svg>
+                      </div>
                       <div>
                         <button
                           class="btn border border-secondary rounded-pill py-0 px-3 text-light"
@@ -1329,7 +1347,11 @@
                           id="myInput"
                         />
                       </div>
-                      <div class="overflow-scroll" id="tweetImage"></div>
+                      <div
+                        class="overflow-scroll"
+                        id="tweetImage"
+                        style="position: relative"
+                      ></div>
                     </div>
                   </div>
                   <div>

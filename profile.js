@@ -6,16 +6,24 @@ const DOB = document.getElementById("DOB");
 const pfps = document.querySelectorAll("#pfp");
 const tweetBtn = document.getElementById("tweetBtn");
 const tweetFileInput = document.getElementById("tweetInputFile");
+const logoutPop = document.getElementById("logout");
 let isCollapse = true;
+let showBtn = false;
+
+if (showBtn === false) {
+  removeTweetImage.style.display = "none";
+} else {
+  removeTweetImage.style.display = "block";
+}
 
 let usersProfile = JSON.parse(localStorage.getItem("newUsers"));
 let signedInUserIndex = localStorage.getItem("signedInUserIndex");
 let currentUser = usersProfile[signedInUserIndex];
 console.log(currentUser.posts);
 
-if (signedInUserIndex === null) {
+if (!signedInUserIndex) {
   alert("youre not authorized");
-  window.location.href = "login.html";
+  window.location.href = "sign-in.html";
 } else {
   fileInput.addEventListener("change", (e) => {
     let profilePic = e.target.files[0];
@@ -719,6 +727,11 @@ function displayTweet() {
 
 displayTweet();
 
+removeTweetImage.addEventListener("click", () => {
+  tweetImage.innerHTML = "";
+  showBtn = false;
+});
+
 tweetFileInput.addEventListener("change", (e) => {
   let profilePic = e.target.files[0];
 
@@ -729,12 +742,17 @@ tweetFileInput.addEventListener("change", (e) => {
   }
 
   myReader.addEventListener("load", (e) => {
-    tweetImage.innerHTML = `<img alt="imagefortweet" class="w-75 h-100" src="${e.target.result}" />`;
+    tweetImage.innerHTML += `<img alt="imagefortweet" class="w-75 h-100" src="${e.target.result}" />`;
+    showBtn = true;
   });
 });
 
-function logout() {
+logoutPop.addEventListener("click", () => {
+  logOutPopUp.style.display = "block";
+});
+
+logoutBtn.addEventListener("click", () => {
   localStorage.removeItem("signedInUserIndex");
   alert("logout successful");
-  window.location.href = "login.html";
-}
+  window.location.href = "sign-in.html";
+});
