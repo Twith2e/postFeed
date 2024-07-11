@@ -10,6 +10,8 @@ let isCollapse = true;
 
 let usersProfile = JSON.parse(localStorage.getItem("newUsers"));
 let signedInUserIndex = localStorage.getItem("signedInUserIndex");
+let currentUser = usersProfile[signedInUserIndex];
+console.log(currentUser.posts);
 
 if (signedInUserIndex === null) {
   alert("youre not authorized");
@@ -27,12 +29,12 @@ if (signedInUserIndex === null) {
     myReader.addEventListener("load", (e) => {
       pfps.forEach((pfp) => {
         pfp.src = e.target.result;
-        pfp.classList.add("profile-pfp", "big-pfp");
+        // pfp.classList.add("profile-pfp", "big-pfp");
       });
-      location.reload();
       usersProfile[signedInUserIndex].image = e.target.result;
       console.log(usersProfile);
       localStorage.setItem("newUsers", JSON.stringify(usersProfile));
+      location.reload();
     });
   });
 
@@ -80,6 +82,7 @@ function expandCollapse() {
 }
 
 tweetBtn.addEventListener("click", () => {
+  usersProfile[signedInUserIndex].posts = currentUser.posts || [];
   if (tweetImage.innerHTML || myInput.value) {
     if (myInput.value && !tweetImage.innerHTML) {
       let postDatabase = { tweet: myInput.value };
@@ -95,6 +98,8 @@ tweetBtn.addEventListener("click", () => {
       usersProfile[signedInUserIndex].posts.unshift(postDatabase);
       localStorage.setItem("newUsers", JSON.stringify(usersProfile));
     }
+    location.reload();
+    console.log(localStorage.getItem("newUsers").posts);
   } else {
     alert("Inputs can't be empty");
   }
@@ -701,6 +706,11 @@ function displayTweet() {
             </div>
           </div>`;
       }
+      if (usersProfile[signedInUserIndex].posts.length > 0) {
+        tweetCount.innerText = ` ${usersProfile[signedInUserIndex].posts.length} posts `;
+      } else {
+        tweetCount.innerText = ` ${usersProfile[signedInUserIndex].posts.length} post `;
+      }
     });
   } else {
     allTweets.innerHTML = `<div class="mt-4 text-center"><span class="text-secondary">No posts yet</span></div>`;
@@ -722,12 +732,6 @@ tweetFileInput.addEventListener("change", (e) => {
     tweetImage.innerHTML = `<img alt="imagefortweet" class="w-75 h-100" src="${e.target.result}" />`;
   });
 });
-
-if (usersProfile[signedInUserIndex].posts.length > 0) {
-  tweetCount.innerText = ` ${usersProfile[signedInUserIndex].posts.length} posts `;
-} else {
-  tweetCount.innerText = ` ${usersProfile[signedInUserIndex].posts.length} post `;
-}
 
 function logout() {
   localStorage.removeItem("signedInUserIndex");
